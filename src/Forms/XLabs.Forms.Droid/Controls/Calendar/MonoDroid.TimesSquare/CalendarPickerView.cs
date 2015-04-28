@@ -477,7 +477,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 		/// Scrolls to selected month.
 		/// </summary>
 		/// <param name="selectedIndex">Index of the selected.</param>
-		internal void ScrollToSelectedMonth(int selectedIndex)
+		public void ScrollToSelectedMonth(int selectedIndex)
 		{
 			ScrollToSelectedMonth(selectedIndex, false);
 		}
@@ -487,7 +487,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 		/// </summary>
 		/// <param name="selectedIndex">Index of the selected.</param>
 		/// <param name="smoothScroll">if set to <c>true</c> [smooth scroll].</param>
-		internal void ScrollToSelectedMonth(int selectedIndex, bool smoothScroll)
+		public void ScrollToSelectedMonth(int selectedIndex, bool smoothScroll)
 		{
 //            Task.Factory.StartNew(() =>
 //            {
