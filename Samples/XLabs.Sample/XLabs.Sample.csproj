@@ -257,10 +257,6 @@
       <Project>{4263404D-89B9-411B-9929-70FA85EAEC33}</Project>
       <Name>XLabs.Forms.Charting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Forms\XLabs.Forms\XLabs.Forms.csproj">
-      <Project>{DC0BDD11-9352-44E4-BCEB-8AE56794BB41}</Project>
-      <Name>XLabs.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\IOC\XLabs.Ioc\XLabs.Ioc.csproj">
       <Project>{2E200799-1170-49BF-A4AA-2A9228F8A213}</Project>
       <Name>XLabs.Ioc</Name>
@@ -272,6 +268,10 @@
     <ProjectReference Include="..\..\src\XLabs.Core\XLabs.Core.csproj">
       <Project>{15D9C404-F7E2-49F0-ACC9-63C4C008C860}</Project>
       <Name>XLabs.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Forms\XLabs.Forms\XLabs.Forms.csproj">
+      <Project>{DC0BDD11-9352-44E4-BCEB-8AE56794BB41}</Project>
+      <Name>XLabs.Forms</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -376,7 +376,6 @@
   <ItemGroup>
     <Reference Include="System.Net.Http">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
@@ -386,7 +385,6 @@
     </Reference>
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\..\packages\Xamarin.Forms.1.4.1.6349\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>

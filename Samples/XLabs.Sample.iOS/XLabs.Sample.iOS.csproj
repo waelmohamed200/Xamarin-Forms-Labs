@@ -233,10 +233,6 @@
       <Project>{0809F6EE-7FB2-4995-8D01-0E6C7E1E79B4}</Project>
       <Name>XLabs.Forms.iOS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Forms\XLabs.Forms\XLabs.Forms.csproj">
-      <Project>{DC0BDD11-9352-44E4-BCEB-8AE56794BB41}</Project>
-      <Name>XLabs.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\IOC\XLabs.Ioc\XLabs.Ioc.csproj">
       <Project>{2E200799-1170-49BF-A4AA-2A9228F8A213}</Project>
       <Name>XLabs.Ioc</Name>
@@ -260,6 +256,10 @@
     <ProjectReference Include="..\XLabs.Sample\XLabs.Sample.csproj">
       <Project>{DC133A2F-E49E-49E3-B43D-BFB957CB5482}</Project>
       <Name>XLabs.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Forms\XLabs.Forms\XLabs.Forms.csproj">
+      <Project>{DC0BDD11-9352-44E4-BCEB-8AE56794BB41}</Project>
+      <Name>XLabs.Forms</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

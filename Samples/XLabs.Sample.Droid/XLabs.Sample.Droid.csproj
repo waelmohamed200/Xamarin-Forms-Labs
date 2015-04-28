@@ -14,8 +14,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AssemblyName>XLabs.Sample.Droid</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>
-    </TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\Xamarin.Forms.Labs\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>15c2adf0</NuGetPackageImportStamp>
@@ -23,7 +22,7 @@
     <MandroidI18n />
     <JavaMaximumHeapSize>
     </JavaMaximumHeapSize>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,10 +53,6 @@
     <DocumentationFile>bin\Debug\XLabs.Sample.Droid.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FormsViewGroup, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Xamarin.Forms.1.4.1.6349\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android.Export" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -76,16 +71,16 @@
     <Reference Include="SQLite.Net.Platform.XamarinAndroid">
       <HintPath>$(SolutionDir)packages\SQLite.Net.Platform.XamarinAndroid.2.5\lib\MonoAndroid\SQLite.Net.Platform.XamarinAndroid.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Core, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="FormsViewGroup">
+      <HintPath>..\..\packages\Xamarin.Forms.1.4.1.6349\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\..\packages\Xamarin.Forms.1.4.1.6349\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Platform.Android, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Xamarin.Forms.Platform.Android">
       <HintPath>..\..\packages\Xamarin.Forms.1.4.1.6349\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.1.4.1.6349\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -123,21 +118,9 @@
       <Project>{C5696998-E9C1-4A24-B50C-FFCFA836B890}</Project>
       <Name>XLabs.Forms.Charting.Droid</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Forms\XLabs.Forms.Droid\XLabs.Forms.Droid.csproj">
-      <Project>{E11E6AB0-2D1D-4B50-A835-7C6B342797EF}</Project>
-      <Name>XLabs.Forms.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Forms\XLabs.Forms\XLabs.Forms.csproj">
-      <Project>{DC0BDD11-9352-44E4-BCEB-8AE56794BB41}</Project>
-      <Name>XLabs.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\IOC\XLabs.Ioc\XLabs.Ioc.csproj">
       <Project>{2E200799-1170-49BF-A4AA-2A9228F8A213}</Project>
       <Name>XLabs.Ioc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Platform\XLabs.Platform.Droid\XLabs.Platform.Droid.csproj">
-      <Project>{F422FD34-E431-4758-A981-03552A7BCF13}</Project>
-      <Name>XLabs.Platform.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Platform\XLabs.Platform\XLabs.Platform.csproj">
       <Project>{2A4D9DD4-326C-4824-AA3C-A9ED45CC898C}</Project>
@@ -158,6 +141,18 @@
     <ProjectReference Include="..\XLabs.Sample\XLabs.Sample.csproj">
       <Project>{DC133A2F-E49E-49E3-B43D-BFB957CB5482}</Project>
       <Name>XLabs.Sample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Forms\XLabs.Forms.Droid\XLabs.Forms.Droid.csproj">
+      <Project>{E11E6AB0-2D1D-4B50-A835-7C6B342797EF}</Project>
+      <Name>XLabs.Forms.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Forms\XLabs.Forms\XLabs.Forms.csproj">
+      <Project>{DC0BDD11-9352-44E4-BCEB-8AE56794BB41}</Project>
+      <Name>XLabs.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Platform\XLabs.Platform.Droid\XLabs.Platform.Droid.csproj">
+      <Project>{F422FD34-E431-4758-A981-03552A7BCF13}</Project>
+      <Name>XLabs.Platform.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
