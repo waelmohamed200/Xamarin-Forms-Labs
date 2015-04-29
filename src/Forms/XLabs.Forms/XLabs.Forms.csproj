@@ -142,7 +142,7 @@
     <Compile Include="Validation\Validator.cs" />
     <Compile Include="Validation\ValidatorPredicate.cs" />
     <Compile Include="Validation\Validators.cs" />
-    <Compile Include="Controls\CalendarEvent.cs" />
+    <Compile Include="Controls\CalendarCustomizer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\..\.nuget\NuGet.targets" Condition="Exists('..\..\..\.nuget\NuGet.targets')" />
