@@ -7,6 +7,8 @@
 	using Android.Util;
 	using Android.Widget;
 
+	using Android.Graphics; // Paint
+
 	/// <summary>
 	/// Class CalendarCellView.
 	/// </summary>
@@ -163,6 +165,95 @@
 			}
 		}
 
+		////////////////////
 
+		protected override void OnDraw(Canvas canvas)
+		{
+			Paint PaintDot = new Paint (); 
+			PaintDot.SetStyle (Android.Graphics.Paint.Style.Fill);
+
+			Paint PaintDay = new Paint {
+				AntiAlias = true,
+				Color = Android.Graphics.Color.Black,
+				TextSize = 30f,
+				FakeBoldText = true
+			};
+			canvas.DrawText (this.Text, 10, 35, PaintDay);
+
+			if (dot1) 
+			{
+				PaintDot.Color = Android.Graphics.Color.Red;
+				canvas.DrawCircle (65, 15, 7, PaintDot);
+			}
+			if (dot2) 
+			{
+				PaintDot.Color = Android.Graphics.Color.Red;
+				canvas.DrawCircle (85, 15, 7, PaintDot);
+			}
+			if (dot3) 
+			{
+				PaintDot.Color = Android.Graphics.Color.Red;
+				canvas.DrawCircle (65, 35, 7, PaintDot);
+			}
+			if (dot4) 
+			{
+				PaintDot.Color = Android.Graphics.Color.Red;
+				canvas.DrawCircle (85, 35, 7, PaintDot);
+			}
+
+			if (ShowLabel) 
+			{
+				Paint PaintBlockSchedule = new Paint {
+					AntiAlias = true,
+					Color = Android.Graphics.Color.Black,
+					//UnderlineText = true,
+					TextSize = 22f
+				};
+				canvas.DrawText (LabelText, 13, 90, PaintBlockSchedule);
+			}
+
+		}
+
+		bool dot1 = false;
+		bool dot2 = false;
+		bool dot3 = false;
+		bool dot4 = false;
+
+		public void DrawDots(int Dots)
+		{
+			switch (Dots) 
+			{
+			case 0: 
+				dot1 = true;
+				dot2 = true;
+				dot3 = true;
+				dot4 = true;
+				break;
+			case 1:
+				dot1 = true;
+				dot2 = true;
+				dot3 = true;
+				break;
+			case 2:
+				dot1 = true;
+				dot2 = true;
+				break;
+			case 3:
+				dot1 = true;
+				break;
+			case 4:
+				break;
+			}
+			this.Invalidate ();
+		}
+
+		bool ShowLabel = false;
+		string LabelText = "";
+		public void DrawLabel(string EventName)
+		{
+			ShowLabel = true;
+			LabelText = EventName;
+			this.Invalidate ();
+		}
 	}
 }

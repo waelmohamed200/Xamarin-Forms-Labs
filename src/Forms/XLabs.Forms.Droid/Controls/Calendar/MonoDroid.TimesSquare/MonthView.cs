@@ -1,3 +1,4 @@
+
 namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 {
 	using System;
@@ -28,6 +29,8 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 		/// </summary>
 		private ClickHandler _clickHandler;
 
+		private ICalendarCustomizer _calendarCustomizer;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MonthView"/> class.
 		/// </summary>
@@ -48,7 +51,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 		/// <param name="handler">The handler.</param>
 		/// <returns>MonthView.</returns>
 		public static MonthView Create(ViewGroup parent, LayoutInflater inflater, string weekdayNameFormat,
-									   DateTime today, ClickHandler handler)
+										DateTime today, ClickHandler handler, ICalendarCustomizer calendarCustomizer)
 		{
 			var view = (MonthView)inflater.Inflate(Resource.Layout.month, parent, false);
 
@@ -67,6 +70,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 				today = originalDay;
 			}
 			view._clickHandler = handler;
+			view._calendarCustomizer = calendarCustomizer;
 			return view;
 		}
 
@@ -190,6 +194,46 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 						cellView.Tag = cell;
 						cellView.SetStyle(month.Style);
 						//Logr.D("Setting cell at {0} ms", stopWatch.ElapsedMilliseconds);
+
+						// ICalendarCustomizer
+						if (_calendarCustomizer == null) {
+							Logr.D("No ICalendarCustomizer");
+						} else {
+							var result = _calendarCustomizer.GetEventsForDay (month.Month, cell.Value);
+							Logr.D("MonthView events: {0}", result.Count);
+							if (result.Count != 0) {
+								if (cell.IsCurrentMonth) {
+									foreach (var item in result) {
+										if (item.id == 1) { // Block sequence event
+											cellView.DrawLabel (item.name);
+											result.Remove (item);
+											break;
+										}
+									}
+
+									int emptySlots = 4;
+									// Look for first Activity event then remove it
+									foreach (var item in result) {
+										if (item.id == 0) { // Activity event
+											//cellView.DrawDot1 (item.eventID);
+											result.Remove (item);
+											emptySlots--;
+											break;
+										}
+									}
+
+									if (result.Count > 0 && result.Count >= emptySlots) {
+										for (int itemsLeft = 0; itemsLeft < result.Count; itemsLeft++) {
+											emptySlots--;
+											if (emptySlots == 0)
+												break;
+										}
+									}
+
+									cellView.DrawDots (emptySlots);
+								}
+							}
+						}
 					}
 				} else
 				{
@@ -221,5 +265,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 			_title = FindViewById<TextView>(Resource.Id.title);
 			_grid = FindViewById<CalendarGridView>(Resource.Id.calendar_grid);
 		}
+
+
 	}
 }

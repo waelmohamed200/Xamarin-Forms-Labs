@@ -97,7 +97,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 			if(_reusableMonthView == null)
 			{
 				monthView = MonthView.Create(pager, _inflater, _calendar.WeekdayNameFormat, _calendar.Today,
-					_calendar.ClickHandler);
+					_calendar.ClickHandler, _calendar.calendarCustomizer);
 			} else
 			{
 				monthView = _reusableMonthView;

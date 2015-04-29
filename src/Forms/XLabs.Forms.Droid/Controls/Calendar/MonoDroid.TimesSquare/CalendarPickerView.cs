@@ -83,6 +83,8 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 		/// </summary>
 		internal readonly List<MonthDescriptor> Months = new List<MonthDescriptor>();
 
+		internal ICalendarCustomizer calendarCustomizer = null;  //optional
+
 		/// <summary>
 		/// The cells
 		/// </summary>
@@ -338,6 +340,12 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 			errorMsg = string.Format(errorMsg, MinDate.ToString(fullDateFormat),
 				MaxDate.ToString(fullDateFormat));
 			Toast.MakeText(_context, errorMsg, ToastLength.Short).Show();
+		}
+
+		public FluentInitializer Init(DateTime minDate, DateTime maxDate, DayOfWeek[] highlightedDaysOfWeek, ICalendarCustomizer calendarCustomizer)
+		{
+			this.calendarCustomizer = calendarCustomizer;
+			return this.Init(minDate, maxDate, highlightedDaysOfWeek);
 		}
 
 		/// <summary>
@@ -729,7 +737,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 		/// <summary>
 		/// Validates the and update.
 		/// </summary>
-		internal void ValidateAndUpdate()
+		public void ValidateAndUpdate()
 		{
 			if(Adapter == null) {
 				Adapter = MyAdapter;
