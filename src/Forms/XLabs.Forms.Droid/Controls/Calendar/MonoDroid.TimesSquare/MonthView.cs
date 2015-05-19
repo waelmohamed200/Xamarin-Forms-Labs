@@ -222,7 +222,13 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 										}
 									}
 
-									if (result.Count > 0 && result.Count >= emptySlots) {
+									// TODO: Look for first user Activity event then remove it
+
+									// TODO: Look for first user entry event then remove it
+
+									// If there are items still in result and dot slots available
+									//if (result.Count > 0 && result.Count >= emptySlots) {
+									if (result.Count > 0 && emptySlots > 0) {
 										for (int itemsLeft = 0; itemsLeft < result.Count; itemsLeft++) {
 											emptySlots--;
 											if (emptySlots == 0)

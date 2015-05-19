@@ -212,10 +212,15 @@
 					visibleChildCount++;
 				}
 			}
+
 			int cellSize = Math.Min((widthMeasureSize - sidePadding * 2) / 7, heightMeasureSize / visibleChildCount);
-			//int cellSize =  widthMeasureSize / 7;
+
+			//***
+			// TC: this makes it square, instead of using full width
 			//Remove any extra pixels since /7 us unlikey to give whole nums.
-			widthMeasureSize = cellSize * 7 + sidePadding * 2;
+			//widthMeasureSize = cellSize * 7 + sidePadding * 2;
+			//***
+
 			int totalHeight = 0;
 			int rowWidthSpec = MeasureSpec.MakeMeasureSpec(widthMeasureSize - 2 * sidePadding, MeasureSpecMode.Exactly);
 			int rowHeightSpec = MeasureSpec.MakeMeasureSpec(cellSize, MeasureSpecMode.Exactly);
@@ -230,7 +235,8 @@
 				}
 			}
 			int measuredWidth = widthMeasureSize; // Fudge factor to make the borders show up right.
-			int measuredHeight = heightMeasureSize + 2;
+			int measuredHeight = heightMeasureSize; // + 2;
+			// This method must be called by onMeasure(int, int) to store the measured width and measured height. Failing to do so will trigger an exception at measurement time.
 			SetMeasuredDimension(measuredWidth, totalHeight);
 
 			stopwatch.Stop();

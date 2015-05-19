@@ -102,8 +102,12 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
 
+			Logr.D("RowView.OnMeasure w={0} h={1}", MeasureSpec.ToString(widthMeasureSpec),
+				MeasureSpec.ToString(heightMeasureSpec));
+			
 			int totalWidth = MeasureSpec.GetSize(widthMeasureSpec);
-			int height = MeasureSpec.GetSize(heightMeasureSpec);
+
+			//int height = MeasureSpec.GetSize(heightMeasureSpec);
 			_cellSize = totalWidth / 7;
 			int cellWidthSpec = MeasureSpec.MakeMeasureSpec(_cellSize, MeasureSpecMode.Exactly);
 			int cellHeightSpec = IsHeaderRow
@@ -121,8 +125,12 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 				}
 			}
 			int widthWithPadding = totalWidth + PaddingLeft + PaddingRight;
+			Logr.D("Row widthWithPadding {0}", totalWidth);
 			int heightWithPadding = rowHeight + PaddingTop + PaddingBottom;
-			SetMeasuredDimension(widthWithPadding, heightWithPadding);
+
+			// Was SetMeasuredDimension(widthWithPadding, heightWithPadding);
+			base.OnMeasure(MeasureSpec.MakeMeasureSpec(widthWithPadding, MeasureSpecMode.Exactly), 
+				MeasureSpec.MakeMeasureSpec(heightWithPadding, MeasureSpecMode.Exactly));
 
 			stopwatch.Stop();
 			Logr.D("Row.OnMeasure {0} ms", stopwatch.ElapsedMilliseconds);

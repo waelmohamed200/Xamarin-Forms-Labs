@@ -8,6 +8,7 @@
 	using Android.Widget;
 
 	using Android.Graphics; // Paint
+	using Xamarin.Forms;  // Device
 
 	/// <summary>
 	/// Class CalendarCellView.
@@ -167,49 +168,76 @@
 
 		////////////////////
 
+		// from http://stackoverflow.com/questions/12166476/android-canvas-drawtext-set-font-size-from-width
+		private static void SetTextSizeForWidth(Paint paint, float desiredWidth,
+			String text) {
+
+			// Pick a reasonably large value for the test. Larger values produce
+			// more accurate results, but may cause problems with hardware
+			// acceleration. But there are workarounds for that, too; refer to
+			// http://stackoverflow.com/questions/6253528/font-size-too-large-to-fit-in-cache
+			const float testTextSize = 48f;
+
+			// Get the bounds of the text, using our testTextSize.
+			paint.TextSize = testTextSize;
+			Rect bounds = new Rect();
+			paint.GetTextBounds(text, 0, text.Length, bounds);
+
+			// Calculate the desired size as a proportion of our testTextSize.
+			float desiredTextSize = testTextSize * desiredWidth / bounds.Width();
+
+			// Set the paint for that size.
+			paint.TextSize = desiredTextSize;
+		}
+
 		protected override void OnDraw(Canvas canvas)
 		{
+			// For some reason this knows its size; OnSizeChanged is never called.
+			//Logr.D ("Cell.onDraw {0} {1}", this.Width, this.Height); //154x154 on Nexus 5
+
 			Paint PaintDot = new Paint (); 
 			PaintDot.SetStyle (Android.Graphics.Paint.Style.Fill);
 
-			Paint PaintDay = new Paint {
+			Paint paintDay = new Paint {
 				AntiAlias = true,
 				Color = Android.Graphics.Color.Black,
-				TextSize = 30f,
+				//TextSize = (float) Device.GetNamedSize(NamedSize.Large, typeof(Label)),
 				FakeBoldText = true
 			};
-			canvas.DrawText (this.Text, 10, 35, PaintDay);
+			SetTextSizeForWidth (paintDay, this.Width/6.0f, "8");
+			canvas.DrawText (this.Text, this.Width*0.1f/*canvas.ClipBounds.Right*0.1f*/, this.Height*0.4f/*canvas.ClipBounds.Bottom * 0.35f*/, paintDay);
 
 			if (dot1) 
 			{
 				PaintDot.Color = Android.Graphics.Color.Red;
-				canvas.DrawCircle (65, 15, 7, PaintDot);
+				canvas.DrawCircle (canvas.ClipBounds.Right * 0.65f, canvas.ClipBounds.Bottom * 0.15f, 7, PaintDot);
 			}
 			if (dot2) 
 			{
 				PaintDot.Color = Android.Graphics.Color.Red;
-				canvas.DrawCircle (85, 15, 7, PaintDot);
+				canvas.DrawCircle (canvas.ClipBounds.Right * 0.85f, canvas.ClipBounds.Bottom * 0.15f, 7, PaintDot);
 			}
 			if (dot3) 
 			{
 				PaintDot.Color = Android.Graphics.Color.Red;
-				canvas.DrawCircle (65, 35, 7, PaintDot);
+				canvas.DrawCircle (canvas.ClipBounds.Right * 0.65f, canvas.ClipBounds.Bottom * 0.35f, 7, PaintDot);
 			}
 			if (dot4) 
 			{
 				PaintDot.Color = Android.Graphics.Color.Red;
-				canvas.DrawCircle (85, 35, 7, PaintDot);
+				canvas.DrawCircle (canvas.ClipBounds.Right * 0.85f, canvas.ClipBounds.Bottom * 0.35f, 7, PaintDot);
 			}
 
 			if (ShowLabel) 
 			{
-				Paint PaintBlockSchedule = new Paint {
+				Paint paintBlockSchedule = new Paint {
 					AntiAlias = true,
 					Color = Android.Graphics.Color.Black,
 					//UnderlineText = true,
-					TextSize = 22f
+					//TextSize = 30f //(float) Device.GetNamedSize(NamedSize.Large, typeof(Label))
 				};
-				canvas.DrawText (LabelText, 13, 90, PaintBlockSchedule);
+				SetTextSizeForWidth (paintBlockSchedule, this.Width/1.4f, "88 8888");
+				canvas.DrawText (LabelText, this.Width * 0.1f, this.Height * 0.8f, paintBlockSchedule);
 			}
 
 		}
