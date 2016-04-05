@@ -190,6 +190,28 @@
 			paint.TextSize = desiredTextSize;
 		}
 
+        //TC
+        private static void SetTextSizeForHeight(Paint paint, float desiredHeight,
+            String text) {
+
+            // Pick a reasonably large value for the test. Larger values produce
+            // more accurate results, but may cause problems with hardware
+            // acceleration. But there are workarounds for that, too; refer to
+            // http://stackoverflow.com/questions/6253528/font-size-too-large-to-fit-in-cache
+            const float testTextSize = 48f;
+
+            // Get the bounds of the text, using our testTextSize.
+            paint.TextSize = testTextSize;
+            Rect bounds = new Rect();
+            paint.GetTextBounds(text, 0, text.Length, bounds);
+
+            // Calculate the desired size as a proportion of our testTextSize.
+            float desiredTextSize = testTextSize * desiredHeight / bounds.Height();
+
+            // Set the paint for that size.
+            paint.TextSize = desiredTextSize;
+        }
+
 		protected override void OnDraw(Canvas canvas)
 		{
 			// For some reason this knows its size; OnSizeChanged is never called.
@@ -204,7 +226,8 @@
 				//TextSize = (float) Device.GetNamedSize(NamedSize.Large, typeof(Label)),
 				FakeBoldText = true
 			};
-			SetTextSizeForWidth (paintDay, this.Width/6.0f, "8");
+			//SetTextSizeForWidth (paintDay, this.Width/6.0f, "8");
+            SetTextSizeForHeight (paintDay, this.Height/3.0f, "8");
 			canvas.DrawText (this.Text, this.Width*0.1f/*canvas.ClipBounds.Right*0.1f*/, this.Height*0.4f/*canvas.ClipBounds.Bottom * 0.35f*/, paintDay);
 
 			if (dot1) 
@@ -237,7 +260,7 @@
 					//TextSize = 30f //(float) Device.GetNamedSize(NamedSize.Large, typeof(Label))
 				};
 				SetTextSizeForWidth (paintBlockSchedule, this.Width/1.4f, "88 8888");
-				canvas.DrawText (LabelText, this.Width * 0.1f, this.Height * 0.8f, paintBlockSchedule);
+                canvas.DrawText (LabelText, this.Width * 0.1f, this.Height * 0.8f, paintBlockSchedule);
 			}
 
 		}

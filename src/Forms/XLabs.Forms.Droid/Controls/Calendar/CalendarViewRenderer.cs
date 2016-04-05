@@ -75,8 +75,8 @@ namespace XLabs.Forms.Controls
 				_view = e.NewElement;
 				var inflatorservice =
 					(LayoutInflater) Context.GetSystemService(Context.LayoutInflaterService);
-				_containerView = inflatorservice.Inflate(Resource.Layout.calendar_picker, null);
-				_picker = _containerView.FindViewById<CalendarPickerView>(Resource.Id.calendar_view);
+                _containerView = inflatorservice.Inflate(XLabs.Forms.Resource.Layout.calendar_picker, null);
+                _picker = _containerView.FindViewById<CalendarPickerView>(XLabs.Forms.Resource.Id.calendar_view);
 				_picker.Init(Element.MinDate, Element.MaxDate, Element.HighlightedDaysOfWeek);
 				_picker.OnDateSelected +=
 					(object sender, DateSelectedEventArgs evt) =>
@@ -153,12 +153,12 @@ namespace XLabs.Forms.Controls
 		{
 			if (_leftArrow == null)
 			{
-				_leftArrow = _containerView.FindViewById<CalendarArrowView>(Resource.Id.left_arrow);
+                _leftArrow = _containerView.FindViewById<CalendarArrowView>(XLabs.Forms.Resource.Id.left_arrow);
 				_leftArrow.Click += (object sender, EventArgs e) => { SelectMonth(_picker.CurrentItem - 1, true); };
 			}
 			if (_rightArrow == null)
 			{
-				_rightArrow = _containerView.FindViewById<CalendarArrowView>(Resource.Id.right_arrow);
+                _rightArrow = _containerView.FindViewById<CalendarArrowView>(XLabs.Forms.Resource.Id.right_arrow);
 				_rightArrow.Direction = CalendarArrowView.ArrowDirection.RIGHT;
 				_rightArrow.Click += (object sender, EventArgs e) => { SelectMonth(_picker.CurrentItem + 1, true); };
 			}

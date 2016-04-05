@@ -107,12 +107,12 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 			
 			int totalWidth = MeasureSpec.GetSize(widthMeasureSpec);
 
-			//int height = MeasureSpec.GetSize(heightMeasureSpec);
+			int height = MeasureSpec.GetSize(heightMeasureSpec);
 			_cellSize = totalWidth / 7;
 			int cellWidthSpec = MeasureSpec.MakeMeasureSpec(_cellSize, MeasureSpecMode.Exactly);
-			int cellHeightSpec = IsHeaderRow
-				? MeasureSpec.MakeMeasureSpec(_cellSize, MeasureSpecMode.AtMost)
-				: cellWidthSpec;
+            int cellHeightSpec = IsHeaderRow
+				? MeasureSpec.MakeMeasureSpec (_cellSize, MeasureSpecMode.AtMost)
+                : 30; //(height/10) ; // was cellWidthSpec
 			int rowHeight = 0;
 			for(int c = 0; c < ChildCount; c++)
 			{

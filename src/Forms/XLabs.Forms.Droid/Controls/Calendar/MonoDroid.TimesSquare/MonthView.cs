@@ -184,7 +184,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 						var cellView = (CalendarCellView)weekRow.GetChildAt(c);
 
 						cellView.Text = cell.Value.ToString();
-						cellView.Enabled = cell.IsCurrentMonth;
+                        cellView.Enabled = true; //cell.IsCurrentMonth; //TC: tapping cells for prev/next month works fine.
 						cellView.Selectable = cell.IsSelectable;
 						cellView.Selected = cell.IsSelected;
 						cellView.IsCurrentMonth = cell.IsCurrentMonth;
@@ -197,7 +197,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 
 						// ICalendarCustomizer
 						if (_calendarCustomizer == null) {
-							Logr.D("No ICalendarCustomizer");
+							//Logr.D("No ICalendarCustomizer");
 						} else {
 							var result = _calendarCustomizer.GetEventsForDay (month.Month, cell.Value);
 							Logr.D("MonthView events: {0}", result.Count);
