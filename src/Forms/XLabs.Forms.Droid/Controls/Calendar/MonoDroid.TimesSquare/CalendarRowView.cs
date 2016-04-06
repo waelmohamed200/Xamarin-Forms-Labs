@@ -111,10 +111,13 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 			_cellSize = totalWidth / 7;
 			int cellWidthSpec = MeasureSpec.MakeMeasureSpec(_cellSize, MeasureSpecMode.Exactly);
             int cellHeightSpec = IsHeaderRow
-				? MeasureSpec.MakeMeasureSpec (_cellSize, MeasureSpecMode.AtMost)
-                : 30; //(height/10) ; // was cellWidthSpec
-			int rowHeight = 0;
-			for(int c = 0; c < ChildCount; c++)
+                ? MeasureSpec.MakeMeasureSpec (height, MeasureSpecMode.AtMost) // was _cellSize
+                : MeasureSpec.MakeMeasureSpec (height, MeasureSpecMode.AtMost); // 30; //(height/10) ; // was cellWidthSpec
+
+            // Changed week.xml to layout_height="match_parent" from "wrap_content" so we no longer set the height here:
+            int rowHeight = IsHeaderRow ? 0 : height;
+			
+            for(int c = 0; c < ChildCount; c++)
 			{
 				var child = GetChildAt(c);
 				child.Measure(cellWidthSpec, cellHeightSpec);
@@ -128,6 +131,7 @@ namespace XLabs.Forms.Controls.MonoDroid.TimesSquare
 			Logr.D("Row widthWithPadding {0}", totalWidth);
 			int heightWithPadding = rowHeight + PaddingTop + PaddingBottom;
 
+            // This is what sets the size of the whole control!!!
 			// Was SetMeasuredDimension(widthWithPadding, heightWithPadding);
 			base.OnMeasure(MeasureSpec.MakeMeasureSpec(widthWithPadding, MeasureSpecMode.Exactly), 
 				MeasureSpec.MakeMeasureSpec(heightWithPadding, MeasureSpecMode.Exactly));

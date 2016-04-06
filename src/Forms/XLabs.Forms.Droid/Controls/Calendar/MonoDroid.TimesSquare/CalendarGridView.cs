@@ -223,14 +223,14 @@
 
 			int totalHeight = 0;
 			int rowWidthSpec = MeasureSpec.MakeMeasureSpec(widthMeasureSize - 2 * sidePadding, MeasureSpecMode.Exactly);
-			int rowHeightSpec = MeasureSpec.MakeMeasureSpec(cellSize, MeasureSpecMode.Exactly);
+            int rowHeightSpec = MeasureSpec.MakeMeasureSpec(cellSize, MeasureSpecMode.Exactly);
 			for(int c = 0; c < ChildCount; c++)
 			{
 				var child = GetChildAt(c);
 				if(child.Visibility == ViewStates.Visible)
 				{
 					MeasureChild(child, rowWidthSpec,
-						c == 0 ? MeasureSpec.MakeMeasureSpec(cellSize, MeasureSpecMode.AtMost) : rowHeightSpec);
+                        c == 0 ? MeasureSpec.MakeMeasureSpec(cellSize, MeasureSpecMode.AtMost) : rowHeightSpec);
 					totalHeight += child.MeasuredHeight;
 				}
 			}

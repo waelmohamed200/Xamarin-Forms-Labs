@@ -957,11 +957,12 @@ namespace XLabs.Forms.Controls
 		/// </summary>
 		public CalendarView()
 		{
+            // iOS is now hardcoded. For Android this has no effect.
 			/*if(Device.OS == TargetPlatform.iOS){
 				HeightRequest = 198 + 20; //This is the size of the original iOS calendar
             }else if(Device.OS == TargetPlatform.Android){
 				// adjusted for full-width view
-				HeightRequest = 320; //300; //This is the size in which Android calendar renders comfortably on most devices
+                HeightRequest = 320; //300; //This is the size in which Android calendar renders comfortably on most devices
 			}*/
 		}
 
